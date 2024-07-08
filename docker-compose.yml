@@ -1,0 +1,46 @@
+# Arquivo docker-compose.yml criado por Humberto Vilar Arouca em 08/07/2024.
+# Ambiende de estudos com LAMP (Linux, Apache2, MySQL e PHP 8.2).
+# Modelo para criar ambiente para novos sistemas em Produção
+
+services:
+  # Inicia o container para o serviço WEB (Apache e PHP)
+  web:
+    image: php:8.2-apache
+    build: './build/php'
+    ports:
+      - "80:80"
+    volumes:
+      - ./app:/var/www/html
+      - ./build/apache2/log:/var/log/apache2
+      
+# Inicia o container para o Serviço MySql
+  mysql:
+    image: mysql
+    restart: on-failure
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: pass@123root
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass@123user
+      # Set TimeZone and locale
+      TZ: 'America/Porto_Velho'
+      LANGUAGE: 'pt_BR'
+    volumes:
+      - ./build/mysql/:/docker-entrypoint-initdb.d/
+      - ./build/mysql/db/:/var/lib/mysql
+
+  # Inicia Serviço do phpMyAdmin com dependência do container mysql  
+  phpmyadmin:
+    image: phpmyadmin
+    restart: on-failure
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+      
+    depends_on:
+      - mysql
