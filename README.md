@@ -1,4 +1,4 @@
-# Docker Compose LAMP com Apache2 e PHP 7.4 + PHPMyAdmin
+# Docker Compose LAMP com Apache2 e PHP 8 + PHPMyAdmin
 Ambiente LAMP (Linux + Apache + MySQL e PHP) para desenvolvimento de aplicações WEB rápido e simples, sem necessida de todas vez criar os arquivos, sentimos a necessidade de fazer um repositório que estivesse sempre disponível com as configurações e necessidades do que estamos acostumados a desenvolver.
 
 ## ✒️ Autores
