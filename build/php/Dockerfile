@@ -12,4 +12,5 @@ RUN docker-php-ext-install pdo pdo_mysql mysqli zip
 RUN a2enmod rewrite
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
+WORKDIR /build/php
 COPY php.ini /usr/local/etc/php
