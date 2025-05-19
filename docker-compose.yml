@@ -12,6 +12,10 @@ services:
     volumes:
       - ./app:/var/www/html
       - ./build/apache2/log:/var/log/apache2
+      - ./composer.json:/var/www/html/composer.json # Sincroniza o composer.json
+      - ./composer.lock:/var/www/html/composer.lock # Sincroniza o composer.lock
+      - ./vendor:/var/www/html/vendor # Sincroniza a pasta vendor
+      - ./config:/var/www/config   # monta a pasta de config fora da web
       
 # Inicia o container para o Serviço MySql
   mysql:
